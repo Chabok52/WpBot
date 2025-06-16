@@ -1,0 +1,23 @@
+¡Bienvenido!', 'Escribe *menu* en cualquier momento para volver aquí
+
+El menú principal funciona respondiendo a este mensaje con el número específico, según el trámite que desees realizar.
+
+Menú principal:
+
+*1.* Fecha de inscripción a las materias 
+
+*2.* Fecha de inscripción a los examenes 
+
+*3.* Requisitos para inscribirse a la universidad 
+
+*4.* Horarios de la carrera 
+
+*5.* Solicitudes de Constancias 
+
+*6.* Cambio o Baja de carrera 
+
+*7.* Equivalencias 
+
+*8.* Solicitud de Titulo 
+
+*9.* Supervisor en caso de otra consulta
