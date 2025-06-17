@@ -204,13 +204,3 @@ const main = async () => {
 }
 
 main()
-
-const http = require('http')
-
-const PORT = process.env.PORT || 3000
-http.createServer((req, res) => {
-    res.writeHead(200)
-    res.end('Bot WhatsApp funcionando en Railway 🚀')
-}).listen(PORT, () => {
-    console.log(`Servidor HTTP activo en puerto ${PORT}`)
-})
