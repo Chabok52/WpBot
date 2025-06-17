@@ -75,7 +75,7 @@ const normalizarTexto = (texto) => {
 const flowHorarios = addKeyword(['Horarios', 'horarios', 'HORARIOS'])
     .addAnswer(horarios,
         { capture: true },
-        async (ctx, { gotoFlow, flowDynamic, fallBack }) => {
+        async (ctx, { gotoFlow, flowDynamic, fallBack, state }) => {
             const entradaNormalizada = normalizarTexto(ctx.body)
 
             const pdfs = {
@@ -84,19 +84,24 @@ const flowHorarios = addKeyword(['Horarios', 'horarios', 'HORARIOS'])
                 'contador publico': 'https://drive.google.com/horarios/contabilidad.pdf'
             }
 
+            if (entradaNormalizada === 'menu') {
+                return gotoFlow(flowMenu)
+            }
+
             if (pdfs[entradaNormalizada]) {
                 await flowDynamic([
                     `✅ Aquí está el PDF de horarios para *${ctx.body}*:`,
                     pdfs[entradaNormalizada],
-                    '\nEscribe *Menu* para volver al menú principal.'
+                    'Escribe *menu* para volver al menú principal.'
                 ])
             } else {
                 await flowDynamic([
                     `❌ No encontré horarios para *${ctx.body}*.`,
                     'Asegurate de ingresar el nombre completo de tu carrera.',
                     'Ej: "ingenieria en computacion", "abogacia", "contador publico"',
-                    '\nEscribe *Menu* para volver al menú o intenta nuevamente.'
+                    'Intentá nuevamente o escribe *menu* para volver al menú principal.'
                 ])
+                return fallBack() // vuelve a capturar en el mismo flujo
             }
         },
         [flowSecundario])
